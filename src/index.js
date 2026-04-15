@@ -2,9 +2,7 @@ import "./styles.css";
 import { createToDo } from "./todo.js";
 import { renderTodo } from "./renderTodo.js";
 const content = document.getElementById("content");
-const template__button = document.createElement("button");
-template__button.className = "template__button";
-template__button.textContent = "Button";
+const template__button = document.getElementById("add__task");
 template__button.addEventListener("click", () => {
   const read = createToDo(
     "Read",

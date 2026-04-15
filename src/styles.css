@@ -1,11 +1,12 @@
 /* =============================================================================================== */
 /* Global  */
 :root {
-  --body-bgc: rgb(43, 43, 43);
+  --body-bgc: rgb(29, 29, 29);
   --card-bgc: rgb(114, 114, 114);
   --clear-color: #eeeeee;
   --red-color: #ec1616e5;
   --red-clear-color: #ec1616;
+  --divisory-line: #ffffff42;
 }
 * {
   border: 0;
@@ -16,10 +17,26 @@
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   background-color: var(--body-bgc);
   color: var(--clear-color);
+}
+header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--divisory-line);
+}
+header h1 {
+  font-size: 24px;
+  font-weight: 500;
+}
+header span {
+  color: var(--red-clear-color);
+  font-weight: 900;
 }
 button {
   cursor: pointer;
@@ -42,11 +59,48 @@ button {
 .template__button:active {
   transform: scale(0.85);
 }
-
 /* =============================================================================================== */
-/* Todo  */
-.todo__container {
-  background-color: var(--card-bgc);
+/* Main  */
+.main__container {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: row;
+  height: 100vh;
+}
+/* =============================================================================================== */
+/* Project  */
+#project {
+  background-color: rgb(37, 37, 37);
+  width: 15%;
+  height: 100vh;
+  padding: 20px;
+  border-right: 1px solid var(--divisory-line);
+}
+/* =============================================================================================== */
+/* Content  */
+#content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 85%;
+  height: 100vh;
+}
+#add__task {
+  width: 10%;
+  padding: 10px 30px;
+  border-radius: 5px;
+  background-color: var(--red-color);
   color: var(--clear-color);
-  width: 300px;
+  border: 1px solid var(--divisory-line);
+}
+/* =============================================================================================== */
+/* Content To do  */
+.todo__container {
+  color: var(--clear-color);
+  width: 100%;
+  border: 1px solid var(--divisory-line);
+  border-left: 6px solid var(--red-color);
+  padding: 10px 20px;
+  margin: 10px 0;
 }
