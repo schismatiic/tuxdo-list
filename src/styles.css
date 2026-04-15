@@ -193,6 +193,7 @@ button {
   justify-content: space-between;
   color: var(--clear-color);
   width: 100%;
+  /* height: 6vh; */
   border: 1px solid var(--divisory-line);
   border-left: 6px solid var(--red-color);
   padding: 10px 20px;
@@ -213,5 +214,19 @@ button {
   background-color: rgb(51, 51, 51);
 }
 .remove__btn:active {
+  transform: scale(0.85);
+}
+.edit__btn {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 5px 20px;
+  color: var(--clear-color);
+  margin-top: 10px;
+}
+.edit__btn:hover {
+  transform: scale(0.95);
+  background-color: rgb(51, 51, 51);
+}
+.edit__btn:active {
   transform: scale(0.85);
 }

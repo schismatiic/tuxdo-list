@@ -1,11 +1,18 @@
 import "./styles.css";
 import { createToDo } from "./todo.js";
-import { renderTodo } from "./renderTodo.js";
+import { renderTodo, myTasks } from "./renderTodo.js";
 import { compareAsc, format } from "date-fns";
 
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
-let myTasks = [];
+const parent = document.querySelectorAll("content");
+parent.forEach((element) => {
+  element.addEventListener("click", () => {
+    const taskId = element.getAttribute("data-taskId");
+    console.log(taskId);
+  });
+});
+let hello = "hello";
 submit__button.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;
   const textareaescription = document.getElementById("description").value;
@@ -27,5 +34,4 @@ submit__button.addEventListener("click", (event) => {
   task.isShown = true;
   console.log(myTasks);
 });
-
-export { content, myTasks };
+export { content, myTasks, hello };
