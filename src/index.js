@@ -5,7 +5,7 @@ import { compareAsc, format } from "date-fns";
 
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
-const myTasks = [];
+let myTasks = [];
 submit__button.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;
   const textareaescription = document.getElementById("description").value;
@@ -14,10 +14,18 @@ submit__button.addEventListener("click", (event) => {
     "dd MMMM yyyy",
   );
   const priority = document.getElementById("priority").value;
-  const task = createToDo(inputName, textareaescription, date, priority);
+  const task = createToDo(
+    crypto.randomUUID(),
+    inputName,
+    textareaescription,
+    date,
+    priority,
+    false,
+  );
   myTasks.push(task);
   renderTodo(myTasks);
+  task.isShown = true;
   console.log(myTasks);
 });
 
-export { content };
+export { content, myTasks };

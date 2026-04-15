@@ -189,6 +189,8 @@ button {
 /* =============================================================================================== */
 /* Content To do  */
 .todo__container {
+  display: flex;
+  justify-content: space-between;
   color: var(--clear-color);
   width: 100%;
   border: 1px solid var(--divisory-line);
@@ -199,4 +201,17 @@ button {
 }
 .todo__container:hover {
   background-color: rgb(41, 41, 41);
+}
+.remove__btn {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 5px 10px;
+  color: var(--clear-color);
+}
+.remove__btn:hover {
+  transform: scale(0.95);
+  background-color: rgb(51, 51, 51);
+}
+.remove__btn:active {
+  transform: scale(0.85);
 }
