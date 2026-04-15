@@ -19,7 +19,35 @@
         </div>
         <div id="content">
             <h2>To do</h2>
-            <button id="add__task">+ Add task</button>
+            <button command="show-modal" commandfor="task-dialog" id="add__task">+ Add task</button>
+            <div>
+                <dialog id="task-dialog">
+                    <form method="dialog">
+                        <h3>Add a new task</h4>
+                            <section id="inputs">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Read Don Quijote de la Mancha">
+                                <label for="description">Description</label>
+                                <textarea id="description" type="text"
+                                    placeholder="Read the chapter 23 of the first part"></textarea>
+                                <label for="dueDate">Due date</label>
+                                <input id="dueDate" type="date">
+                                <label for="priority">Priority</label>
+                                <select id="priority" name="priority">
+                                    <option value="high">High</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                            </section>
+                            <menu>
+                                <button id="submit__button" type="submit">+ Add</button>
+                            </menu>
+                    </form>
+                    <div class="close__box">
+                        <button id="close" commandfor="task-dialog" command="close">[X] Close</button>
+                    </div>
+                </dialog>
+            </div>
         </div>
     </div>
 

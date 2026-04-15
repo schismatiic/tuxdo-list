@@ -2,11 +2,13 @@ import "./styles.css";
 import { createToDo } from "./todo.js";
 import { renderTodo } from "./renderTodo.js";
 const content = document.getElementById("content");
-const template__button = document.getElementById("add__task");
-template__button.addEventListener("click", () => {
+const submit__button = document.getElementById("submit__button");
+submit__button.addEventListener("click", () => {
+  const inputName = document.getElementById("name").value;
+  const textareaescription = document.getElementById("description").value;
   const read = createToDo(
-    "Read",
-    "Read a book",
+    inputName,
+    textareaescription,
     "Today",
     "Mandatory",
     "It should be completed at 9PM",

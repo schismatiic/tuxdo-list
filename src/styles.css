@@ -94,6 +94,98 @@ button {
   color: var(--clear-color);
   border: 1px solid var(--divisory-line);
 }
+#add__task:hover {
+  transform: scale(0.95);
+  background-color: var(--red-clear-color);
+}
+#add__task:active {
+  transform: scale(0.85);
+}
+/* =============================================================================================== */
+/* Task dialog  */
+#task-dialog {
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  color: var(--clear-color);
+  padding: 30px 20px;
+  border-radius: 10px;
+  width: 40%;
+}
+#task-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+}
+#inputs {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+}
+#inputs input {
+  padding: 6px 10px;
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  border-radius: 5px;
+  color: var(--clear-color);
+}
+#inputs label {
+  margin-top: 20px;
+}
+#description {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 6px 10px;
+  height: 10vh;
+  resize: none;
+  border-radius: 5px;
+  color: var(--clear-color);
+}
+#dueDate {
+  width: 20%;
+}
+#priority {
+  width: 20%;
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: var(--clear-color);
+}
+#submit__button {
+  width: 10%;
+  margin-top: 20px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background-color: var(--red-color);
+  color: var(--clear-color);
+  border: 1px solid var(--divisory-line);
+}
+#submit__button:hover {
+  transform: scale(0.95);
+  background-color: var(--red-clear-color);
+}
+#submit__button:active {
+  transform: scale(0.85);
+}
+#close {
+  width: 9%;
+  margin-top: 20px;
+  padding: 4px 2px;
+  border-radius: 5px;
+  background-color: black;
+  color: var(--clear-color);
+  border: 1px solid var(--divisory-line);
+  font-size: 10px;
+}
+#close:hover {
+  transform: scale(0.95);
+  background-color: rgba(0, 0, 0, 0.783);
+}
+#close:active {
+  transform: scale(0.85);
+}
 /* =============================================================================================== */
 /* Content To do  */
 .todo__container {
