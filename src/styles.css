@@ -42,3 +42,11 @@ button {
 .template__button:active {
   transform: scale(0.85);
 }
+
+/* =============================================================================================== */
+/* Todo  */
+.todo__container {
+  background-color: var(--card-bgc);
+  color: var(--clear-color);
+  width: 300px;
+}
