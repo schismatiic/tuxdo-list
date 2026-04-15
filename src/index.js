@@ -1,22 +1,23 @@
 import "./styles.css";
 import { createToDo } from "./todo.js";
 import { renderTodo } from "./renderTodo.js";
+import { compareAsc, format } from "date-fns";
+
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
-submit__button.addEventListener("click", () => {
+const myTasks = [];
+submit__button.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;
   const textareaescription = document.getElementById("description").value;
-  const read = createToDo(
-    inputName,
-    textareaescription,
-    "Today",
-    "Mandatory",
-    "It should be completed at 9PM",
-    false,
+  const date = format(
+    new Date(document.getElementById("dueDate").value),
+    "dd MMMM yyyy",
   );
-  renderTodo(read);
-  console.log(read);
+  const priority = document.getElementById("priority").value;
+  const task = createToDo(inputName, textareaescription, date, priority);
+  myTasks.push(task);
+  renderTodo(myTasks);
+  console.log(myTasks);
 });
-content.appendChild(template__button);
 
 export { content };

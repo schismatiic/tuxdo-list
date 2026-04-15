@@ -195,4 +195,8 @@ button {
   border-left: 6px solid var(--red-color);
   padding: 10px 20px;
   margin: 10px 0;
+  cursor: pointer;
+}
+.todo__container:hover {
+  background-color: rgb(41, 41, 41);
 }
