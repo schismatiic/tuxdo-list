@@ -1,11 +1,13 @@
 import "./styles.css";
 import { content } from "./index.js";
-const editTask = (container) => {
+import { renderChange } from "./renderChange.js";
+const editTask = (container, id) => {
   // ===============================================================================================
   // Create element
   const edit__container = document.createElement("div");
   const h3 = document.createElement("h3");
   const name__input = document.createElement("input");
+  const description__textarea = document.createElement("textarea");
   const save__btn = document.createElement("button");
   // ===============================================================================================
   // Type
@@ -14,6 +16,7 @@ const editTask = (container) => {
   // Class name
   edit__container.className = "edit__container";
   name__input.className = "name__input";
+  description__textarea.className = "description__textarea";
   save__btn.className = "save__btn";
   // ===============================================================================================
   // Text content
@@ -22,17 +25,23 @@ const editTask = (container) => {
   // ===============================================================================================
   // Placeholder
   name__input.placeholder = "Name";
+  description__textarea.placeholder = "Description";
   // ===============================================================================================
   // Append child
   edit__container.appendChild(h3);
   edit__container.appendChild(name__input);
+  edit__container.appendChild(description__textarea);
   edit__container.appendChild(save__btn);
   container.appendChild(edit__container);
 
   save__btn.addEventListener("click", () => {
+    let changeTask__id = id;
     let name__value = name__input.value;
+    let description__value = description__textarea.value;
+    renderChange(changeTask__id, name__value, description__value);
     edit__container.removeChild(h3);
     edit__container.removeChild(name__input);
+    edit__container.removeChild(description__textarea);
     edit__container.removeChild(save__btn);
     container.removeChild(edit__container);
   });

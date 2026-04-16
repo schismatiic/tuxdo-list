@@ -252,6 +252,15 @@ button {
   background-color: rgb(37, 37, 37);
   border: 1px solid var(--divisory-line);
   color: var(--clear-color);
+  margin-bottom: 10px;
+}
+.description__textarea {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  margin-bottom: 10px;
+  padding: 4px 6px;
+  color: var(--clear-color);
+  resize: none;
 }
 .save__btn {
   background-color: rgb(37, 37, 37);

@@ -10,6 +10,7 @@ const renderTodo = (array) => {
       // ===============================================================================================
       // Variables
       let toggleDetails = false;
+      let toggleEdit = false;
       // ===============================================================================================
       // Create element
       const todo__container = document.createElement("div");
@@ -26,6 +27,7 @@ const renderTodo = (array) => {
       todo__container.className = "todo__container";
       left.className = "left__todo";
       todo__title.className = "todo__title";
+      description.className = "todo__description";
       edit__btn.className = "edit__btn";
       remove__btn.className = "remove__btn";
       // ===============================================================================================
@@ -42,6 +44,7 @@ const renderTodo = (array) => {
       todo__container.setAttribute("data-taskId", todo.id);
       remove__btn.setAttribute("data-taskId", todo.id);
       todo__title.setAttribute("data-taskId", todo.id);
+      description.setAttribute("data-taskId", todo.id);
       // ===============================================================================================
       // Append child
       left.appendChild(todo__title);
@@ -54,14 +57,11 @@ const renderTodo = (array) => {
       // ===============================================================================================
       // Edit
       edit__btn.addEventListener("click", () => {
-        editTask(left);
-        // let getSave = getSaveBtn();
-        // let new__name = getEditInput();
-        // getSave.forEach((element) => {
-        //   element.addEventListener("click", () => {
-        //     let input__value1 = element;
-        //   });
-        // });
+        if (toggleEdit === false) {
+          toggleEdit = true;
+          console.log(toggleEdit);
+          editTask(left, todo.id);
+        }
       });
 
       // ===============================================================================================
