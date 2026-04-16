@@ -233,17 +233,38 @@ button {
 .edit__btn:active {
   transform: scale(0.85);
 }
-#edit-task {
-  margin: 0 auto;
-  margin-top: 100px;
+/* =============================================================================================== */
+/* Edit  */
+.edit__container {
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  margin-top: 20px;
   background-color: rgb(37, 37, 37);
   border: 1px solid var(--divisory-line);
   color: var(--clear-color);
-  padding: 30px 20px;
-  border-radius: 10px;
-  width: 40%;
+  padding: 10px 20px;
+  width: 380px;
 }
-#edit-task::backdrop {
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(2px);
+.name__input {
+  padding: 4px 6px;
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  color: var(--clear-color);
+}
+.save__btn {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 5px 20px;
+  color: var(--clear-color);
+  margin-top: 10px;
+  width: 20%;
+}
+.save__btn:hover {
+  transform: scale(0.95);
+  background-color: rgb(51, 51, 51);
+}
+.save__btn:active {
+  transform: scale(0.85);
 }

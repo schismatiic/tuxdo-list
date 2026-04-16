@@ -8,29 +8,29 @@ const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
 
 let myTasks = [];
-// const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
-// const defaultTask = createToDo(
-//   crypto.randomUUID(),
-//   "default",
-//   "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
-//   date1,
-//   "medium",
-//   false,
-// );
-// const defaultTask1 = createToDo(
-//   crypto.randomUUID(),
-//   "default",
-//   "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
-//   date1,
-//   "medium",
-//   false,
-// );
-// myTasks.push(defaultTask);
-// myTasks.push(defaultTask1);
-// renderTodo(myTasks);
-// defaultTask.isShown = true;
-// defaultTask1.isShown = true;
-// let delete__button = document.querySelectorAll(".remove__btn");
+const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
+const defaultTask = createToDo(
+  crypto.randomUUID(),
+  "default",
+  "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
+  date1,
+  "medium",
+  false,
+);
+const defaultTask1 = createToDo(
+  crypto.randomUUID(),
+  "default",
+  "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
+  date1,
+  "medium",
+  false,
+);
+myTasks.push(defaultTask);
+myTasks.push(defaultTask1);
+renderTodo(myTasks);
+defaultTask.isShown = true;
+defaultTask1.isShown = true;
+let delete__button = document.querySelectorAll(".remove__btn");
 
 submit__button.addEventListener("click", (event) => {
   const inputName = document.getElementById("name").value;

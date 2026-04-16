@@ -41,6 +41,7 @@ const renderTodo = (array) => {
       // Set id
       todo__container.setAttribute("data-taskId", todo.id);
       remove__btn.setAttribute("data-taskId", todo.id);
+      todo__title.setAttribute("data-taskId", todo.id);
       // ===============================================================================================
       // Append child
       left.appendChild(todo__title);
@@ -54,11 +55,18 @@ const renderTodo = (array) => {
       // Edit
       edit__btn.addEventListener("click", () => {
         editTask(left);
+        // let getSave = getSaveBtn();
+        // let new__name = getEditInput();
+        // getSave.forEach((element) => {
+        //   element.addEventListener("click", () => {
+        //     let input__value1 = element;
+        //   });
+        // });
       });
+
       // ===============================================================================================
       // Remove child
       remove__btn.addEventListener("click", () => {
-        const taskId = todo__container.getAttribute("data-taskId");
         left.removeChild(todo__title);
         left.removeChild(todo__date);
         right.removeChild(remove__btn);
