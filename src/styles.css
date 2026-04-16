@@ -203,6 +203,9 @@ button {
 .todo__container:hover {
   background-color: rgb(41, 41, 41);
 }
+.todo__title:hover {
+  text-decoration: underline;
+}
 .remove__btn {
   background-color: rgb(37, 37, 37);
   border: 1px solid var(--divisory-line);
@@ -229,4 +232,18 @@ button {
 }
 .edit__btn:active {
   transform: scale(0.85);
+}
+#edit-task {
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  color: var(--clear-color);
+  padding: 30px 20px;
+  border-radius: 10px;
+  width: 40%;
+}
+#edit-task::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
 }

@@ -1,7 +1,9 @@
 import "./styles.css";
 import { content } from "./index.js";
-import { removeTodo } from "./removeTodo.js";
+import { myTasks } from "./index.js";
+import { editTask } from "./editTask.js";
 const todo__box = document.createElement("div");
+todo__box.className = "todo__box";
 const renderTodo = (array) => {
   array.forEach((todo) => {
     if (todo.isShown !== true) {
@@ -22,6 +24,8 @@ const renderTodo = (array) => {
       // ===============================================================================================
       // Class name
       todo__container.className = "todo__container";
+      left.className = "left__todo";
+      todo__title.className = "todo__title";
       edit__btn.className = "edit__btn";
       remove__btn.className = "remove__btn";
       // ===============================================================================================
@@ -36,6 +40,7 @@ const renderTodo = (array) => {
       // ===============================================================================================
       // Set id
       todo__container.setAttribute("data-taskId", todo.id);
+      remove__btn.setAttribute("data-taskId", todo.id);
       // ===============================================================================================
       // Append child
       left.appendChild(todo__title);
@@ -43,29 +48,32 @@ const renderTodo = (array) => {
       right.appendChild(remove__btn);
       todo__container.appendChild(left);
       todo__container.appendChild(right);
-      content.appendChild(todo__container);
+      todo__box.appendChild(todo__container);
+      content.appendChild(todo__box);
+      // ===============================================================================================
+      // Edit
+      edit__btn.addEventListener("click", () => {
+        editTask(left);
+      });
       // ===============================================================================================
       // Remove child
       remove__btn.addEventListener("click", () => {
         const taskId = todo__container.getAttribute("data-taskId");
-        const newArray = removeTodo(myTasks, taskId);
-        myTasks = newArray;
         left.removeChild(todo__title);
         left.removeChild(todo__date);
         right.removeChild(remove__btn);
         todo__container.removeChild(left);
         todo__container.removeChild(right);
-        content.removeChild(todo__container);
+        todo__box.removeChild(todo__container);
         if (toggleDetails === true) {
           left.removeChild(description);
           left.removeChild(priority);
           left.removeChild(edit__btn);
         }
-        console.log(myTasks);
       });
       // ===============================================================================================
       // More details
-      todo__container.addEventListener("click", () => {
+      todo__title.addEventListener("click", () => {
         if (toggleDetails === false) {
           toggleDetails = true;
           left.appendChild(description);
@@ -81,4 +89,4 @@ const renderTodo = (array) => {
     }
   });
 };
-export { renderTodo, myTasks };
+export { renderTodo, todo__box };
