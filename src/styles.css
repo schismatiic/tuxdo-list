@@ -262,6 +262,24 @@ button {
   color: var(--clear-color);
   resize: none;
 }
+.due__input {
+  background-color: rgb(37, 37, 37);
+  color: var(--clear-color);
+  border: 1px solid var(--divisory-line);
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  width: 40%;
+  cursor: pointer;
+}
+.priority__select {
+  background-color: rgb(37, 37, 37);
+  color: var(--clear-color);
+  border: 1px solid var(--divisory-line);
+  padding: 4px 6px;
+  margin-bottom: 12px;
+  width: 40%;
+  cursor: pointer;
+}
 .save__btn {
   background-color: rgb(37, 37, 37);
   border: 1px solid var(--divisory-line);

@@ -28,6 +28,8 @@ const renderTodo = (array) => {
       left.className = "left__todo";
       todo__title.className = "todo__title";
       description.className = "todo__description";
+      todo__date.className = "todo__date";
+      priority.className = "todo__priority";
       edit__btn.className = "edit__btn";
       remove__btn.className = "remove__btn";
       // ===============================================================================================
@@ -45,6 +47,8 @@ const renderTodo = (array) => {
       remove__btn.setAttribute("data-taskId", todo.id);
       todo__title.setAttribute("data-taskId", todo.id);
       description.setAttribute("data-taskId", todo.id);
+      todo__date.setAttribute("data-taskId", todo.id);
+      priority.setAttribute("data-taskId", todo.id);
       // ===============================================================================================
       // Append child
       left.appendChild(todo__title);
@@ -59,7 +63,6 @@ const renderTodo = (array) => {
       edit__btn.addEventListener("click", () => {
         if (toggleEdit === false) {
           toggleEdit = true;
-          console.log(toggleEdit);
           editTask(left, todo.id);
         }
       });
