@@ -61,10 +61,8 @@ const renderTodo = (array) => {
       // ===============================================================================================
       // Edit
       edit__btn.addEventListener("click", () => {
-        if (toggleEdit === false) {
-          toggleEdit = true;
-          editTask(left, todo.id);
-        }
+        left.removeChild(edit__btn);
+        editTask(left, todo.id, left, edit__btn);
       });
 
       // ===============================================================================================

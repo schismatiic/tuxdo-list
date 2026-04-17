@@ -2,8 +2,10 @@ import "./styles.css";
 import { content } from "./index.js";
 import { renderChange } from "./renderChange.js";
 import { compareAsc, format } from "date-fns";
+import { createEditTask } from "./editArray.js";
 
-const editTask = (container, id) => {
+let editTaskArray = [];
+const editTask = (container, id, left, edit) => {
   // ===============================================================================================
   // Create element
   const edit__container = document.createElement("div");
@@ -61,11 +63,23 @@ const editTask = (container, id) => {
   container.appendChild(edit__container);
 
   save__btn.addEventListener("click", () => {
+    left.appendChild(edit);
     let changeTask__id = id;
     let name__value = name__input.value;
     let description__value = description__textarea.value;
     let due__value = format(new Date(due__input.value), "dd MMMM yyyy");
     let priority__value = priority__select.value;
+    const newTask = createEditTask(
+      changeTask__id,
+      name__value,
+      description__value,
+      due__value,
+      priority__value,
+      false,
+    );
+    editTaskArray.push(newTask);
+    console.log(editTaskArray);
+
     renderChange(
       changeTask__id,
       name__value,
@@ -85,4 +99,4 @@ const editTask = (container, id) => {
     container.removeChild(edit__container);
   });
 };
-export { editTask };
+export { editTask, editTaskArray };

@@ -4,8 +4,13 @@ import { renderTodo, todo__box } from "./renderTodo.js";
 import { compareAsc, format } from "date-fns";
 import { removeTodo } from "./removeTodo.js";
 import { getRemoveBtn } from "./getRemoveBtn.js";
+import { editTaskArray } from "./editTask.js";
+import { createProject } from "./project.js";
+import { renderNewProject } from "./renderNewProject.js";
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
+const new__project = document.getElementById("project__new");
+const save = document.querySelectorAll(".save__btn");
 
 let myTasks = [];
 const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
@@ -30,9 +35,9 @@ myTasks.push(defaultTask1);
 renderTodo(myTasks);
 defaultTask.isShown = true;
 defaultTask1.isShown = true;
-let delete__button = document.querySelectorAll(".remove__btn");
-
 submit__button.addEventListener("click", (event) => {
+  console.log(editTaskArray);
+
   const inputName = document.getElementById("name").value;
   const textareaescription = document.getElementById("description").value;
   const date = format(
@@ -62,5 +67,8 @@ submit__button.addEventListener("click", (event) => {
     });
   });
 });
-
-export { content, myTasks };
+new__project.addEventListener("click", () => {
+  renderNewProject();
+});
+document.addEventListener("DOMContentLoaded", () => {});
+export { content, myTasks, new__project };
