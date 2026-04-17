@@ -32,12 +32,21 @@ const renderNewProject = () => {
     createProject(project__name);
     new__project__container.appendChild(new__project);
 
-    const render__project = document.createElement("button");
+    const render__project = document.createElement("div");
+    const render__name = document.createElement("p");
+    const render__delete = document.createElement("button");
+
+    render__name.textContent = project__name;
+    render__delete.textContent = "X";
     new__project__container.removeChild(project__input);
     new__project__container.removeChild(create__button);
-    render__project.textContent = project__name;
     render__project.className = "render__project";
+    render__project.appendChild(render__name);
+    render__project.appendChild(render__delete);
     project__container.appendChild(render__project);
+    render__delete.addEventListener("click", () => {
+      project__container.removeChild(render__project);
+    });
   });
 };
 export { renderNewProject };

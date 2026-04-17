@@ -123,6 +123,9 @@ button {
   flex-direction: column;
 }
 .render__project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px 10px;
   background-color: var(--body-bgc);
   border: 1px solid var(--divisory-line);
@@ -136,9 +139,27 @@ button {
 }
 .render__project:hover {
   transform: scale(0.95);
-  background-color: rgb(51, 51, 51);
 }
 .render__project:active {
+  transform: scale(0.85);
+}
+.render__project p {
+  cursor: pointer;
+}
+.render__project p:hover {
+  text-decoration: underline;
+}
+.render__project button {
+  background-color: rgb(37, 37, 37);
+  border: 1px solid var(--divisory-line);
+  padding: 5px 10px;
+  color: var(--clear-color);
+}
+.render__project button:hover {
+  transform: scale(0.95);
+  background-color: rgb(51, 51, 51);
+}
+.render__project button:active {
   transform: scale(0.85);
 }
 /* =============================================================================================== */
@@ -262,10 +283,12 @@ button {
   border-left: 6px solid var(--red-color);
   padding: 10px 20px;
   margin: 10px 0;
-  cursor: pointer;
 }
 .todo__container:hover {
   background-color: rgb(41, 41, 41);
+}
+.todo__title {
+  cursor: pointer;
 }
 .todo__title:hover {
   text-decoration: underline;

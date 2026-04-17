@@ -13,6 +13,9 @@ const new__project = document.getElementById("project__new");
 const save = document.querySelectorAll(".save__btn");
 
 let myTasks = [];
+// ===============================================================================================
+// Default
+const default__project = createProject("Default", myTasks);
 const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
 const defaultTask = createToDo(
   crypto.randomUUID(),
@@ -35,6 +38,8 @@ myTasks.push(defaultTask1);
 renderTodo(myTasks);
 defaultTask.isShown = true;
 defaultTask1.isShown = true;
+// ===============================================================================================
+// Submit listener
 submit__button.addEventListener("click", (event) => {
   console.log(editTaskArray);
 
