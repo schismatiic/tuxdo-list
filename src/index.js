@@ -10,12 +10,11 @@ import { renderNewProject } from "./renderNewProject.js";
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
 const new__project = document.getElementById("project__new");
-const save = document.querySelectorAll(".save__btn");
 
 let myTasks = [];
+let project__name = "Default";
 // ===============================================================================================
 // Default
-const default__project = createProject("Default", myTasks);
 const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
 const defaultTask = createToDo(
   crypto.randomUUID(),
@@ -24,6 +23,7 @@ const defaultTask = createToDo(
   date1,
   "medium",
   false,
+  "Default",
 );
 const defaultTask1 = createToDo(
   crypto.randomUUID(),
@@ -32,17 +32,18 @@ const defaultTask1 = createToDo(
   date1,
   "medium",
   false,
+  "Default",
 );
 myTasks.push(defaultTask);
 myTasks.push(defaultTask1);
 renderTodo(myTasks);
-defaultTask.isShown = true;
-defaultTask1.isShown = true;
+// defaultTask.isShown = true;
+// defaultTask1.isShown = true;
+console.log(myTasks);
+
 // ===============================================================================================
 // Submit listener
 submit__button.addEventListener("click", (event) => {
-  console.log(editTaskArray);
-
   const inputName = document.getElementById("name").value;
   const textareaescription = document.getElementById("description").value;
   const date = format(
@@ -57,12 +58,12 @@ submit__button.addEventListener("click", (event) => {
     date,
     priority,
     false,
+    project__name,
   );
   myTasks.push(task);
+  console.log(myTasks);
   renderTodo(myTasks);
-  task.isShown = true;
   let delete__button = getRemoveBtn();
-  console.log(delete__button);
   delete__button.forEach((element) => {
     element.addEventListener("click", () => {
       const taskId = element.getAttribute("data-taskId");
@@ -74,6 +75,15 @@ submit__button.addEventListener("click", (event) => {
 });
 new__project.addEventListener("click", () => {
   renderNewProject();
+  const create__btn = document.querySelector(".create__button");
+  create__btn.addEventListener("click", () => {
+    const projects = document.querySelectorAll(".render__name__project");
+    projects.forEach((element) => {
+      element.addEventListener("click", () => {
+        project__name = element.textContent;
+        renderTodo(myTasks);
+      });
+    });
+  });
 });
-document.addEventListener("DOMContentLoaded", () => {});
-export { content, myTasks, new__project };
+export { content, myTasks, new__project, project__name };

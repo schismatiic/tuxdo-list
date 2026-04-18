@@ -1,4 +1,12 @@
-function createToDo(id, title, description, dueDate, priority, isShown) {
+function createToDo(
+  id,
+  title,
+  description,
+  dueDate,
+  priority,
+  isShown,
+  project,
+) {
   return {
     id,
     title,
@@ -6,6 +14,7 @@ function createToDo(id, title, description, dueDate, priority, isShown) {
     dueDate,
     priority,
     isShown,
+    project,
   };
 }
 export { createToDo };

@@ -1,12 +1,16 @@
 import "./styles.css";
 import { content } from "./index.js";
-import { myTasks } from "./index.js";
+import { myTasks, project__name } from "./index.js";
 import { editTask } from "./editTask.js";
 const todo__box = document.createElement("div");
+todo__box.textContent = "";
 todo__box.className = "todo__box";
+let update = 0;
+// 0 = todo__box is'nt shown / 1 = todo__box is shown
 const renderTodo = (array) => {
   array.forEach((todo) => {
-    if (todo.isShown !== true) {
+    if (todo.isShown !== true && todo.project === project__name) {
+      console.log(`${todo.project} === ${project__name} ?`);
       // ===============================================================================================
       // Variables
       let toggleDetails = false;
@@ -43,6 +47,7 @@ const renderTodo = (array) => {
       remove__btn.textContent = "X";
       // ===============================================================================================
       // Set id
+      todo__box.setAttribute("data-project", todo.project);
       todo__container.setAttribute("data-taskId", todo.id);
       remove__btn.setAttribute("data-taskId", todo.id);
       todo__title.setAttribute("data-taskId", todo.id);
@@ -58,6 +63,7 @@ const renderTodo = (array) => {
       todo__container.appendChild(right);
       todo__box.appendChild(todo__container);
       content.appendChild(todo__box);
+      update = 1;
       // ===============================================================================================
       // Edit
       edit__btn.addEventListener("click", () => {
