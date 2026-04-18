@@ -10,9 +10,12 @@ import { renderNewProject } from "./renderNewProject.js";
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
 const new__project = document.getElementById("project__new");
+const project__screen = document.getElementById("project__screen");
 
 let myTasks = [];
 let project__name = "Default";
+project__screen.textContent = `Project name: ${project__name}`;
+
 renderNewProject("Default");
 // ===============================================================================================
 // Default
@@ -51,6 +54,7 @@ submit__button.addEventListener("click", (event) => {
     new Date(document.getElementById("dueDate").value),
     "dd MMMM yyyy",
   );
+
   const priority = document.getElementById("priority").value;
   const task = createToDo(
     crypto.randomUUID(),
@@ -83,6 +87,8 @@ new__project.addEventListener("click", () => {
     projects.forEach((element) => {
       element.addEventListener("click", () => {
         project__name = element.textContent;
+        console.log(element);
+        project__screen.textContent = `Project name: ${project__name}`;
         renderTodo(myTasks);
       });
     });
