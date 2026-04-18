@@ -13,6 +13,7 @@ const new__project = document.getElementById("project__new");
 
 let myTasks = [];
 let project__name = "Default";
+renderNewProject("Default");
 // ===============================================================================================
 // Default
 const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
@@ -37,8 +38,8 @@ const defaultTask1 = createToDo(
 myTasks.push(defaultTask);
 myTasks.push(defaultTask1);
 renderTodo(myTasks);
-// defaultTask.isShown = true;
-// defaultTask1.isShown = true;
+defaultTask.isShown = true;
+defaultTask1.isShown = true;
 console.log(myTasks);
 
 // ===============================================================================================
@@ -63,6 +64,7 @@ submit__button.addEventListener("click", (event) => {
   myTasks.push(task);
   console.log(myTasks);
   renderTodo(myTasks);
+  task.isShown = true;
   let delete__button = getRemoveBtn();
   delete__button.forEach((element) => {
     element.addEventListener("click", () => {
