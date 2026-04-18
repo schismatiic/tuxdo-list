@@ -40,7 +40,7 @@ const defaultTask1 = createToDo(
 );
 myTasks.push(defaultTask);
 myTasks.push(defaultTask1);
-renderTodo(myTasks);
+renderTodo(myTasks, true);
 defaultTask.isShown = true;
 defaultTask1.isShown = true;
 console.log(myTasks);
@@ -67,7 +67,7 @@ submit__button.addEventListener("click", (event) => {
   );
   myTasks.push(task);
   console.log(myTasks);
-  renderTodo(myTasks);
+  renderTodo(myTasks, true);
   task.isShown = true;
   let delete__button = getRemoveBtn();
   delete__button.forEach((element) => {
@@ -87,9 +87,27 @@ new__project.addEventListener("click", () => {
     projects.forEach((element) => {
       element.addEventListener("click", () => {
         project__name = element.textContent;
-        console.log(element);
         project__screen.textContent = `Project name: ${project__name}`;
-        renderTodo(myTasks);
+        myTasks.forEach((element) => {
+          element.isShown = false;
+        });
+        renderTodo(myTasks, false);
+        let delete__button = getRemoveBtn();
+        delete__button.forEach((element) => {
+          element.addEventListener("click", () => {
+            const taskId = element.getAttribute("data-taskId");
+            const newArray = removeTodo(myTasks, taskId);
+            myTasks = newArray;
+            console.log(myTasks);
+          });
+        });
+        myTasks.forEach((element) => {
+          console.log(`${element.project} === ${project__name}`);
+          if (element.project === project__name) {
+            element.isShown === true;
+          }
+        });
+        console.log(myTasks);
       });
     });
   });

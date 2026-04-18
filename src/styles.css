@@ -158,12 +158,16 @@ button {
 }
 /* =============================================================================================== */
 /* Content  */
-#content {
+#right-display {
   display: flex;
   flex-direction: column;
   padding: 20px;
   width: 85%;
   height: 100vh;
+}
+#content {
+  display: flex;
+  flex-direction: column;
 }
 #add__task {
   width: 10%;

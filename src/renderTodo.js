@@ -7,101 +7,209 @@ todo__box.textContent = "";
 todo__box.className = "todo__box";
 let update = 0;
 // 0 = todo__box is'nt shown / 1 = todo__box is shown
-const renderTodo = (array) => {
-  array.forEach((todo) => {
-    if (todo.isShown !== true && todo.project === project__name) {
-      console.log(`${todo.project} === ${project__name} ?`);
-      // ===============================================================================================
-      // Variables
-      let toggleDetails = false;
-      let toggleEdit = false;
-      // ===============================================================================================
-      // Create element
-      const todo__container = document.createElement("div");
-      const left = document.createElement("div");
-      const right = document.createElement("div");
-      const todo__title = document.createElement("h4");
-      const todo__date = document.createElement("p");
-      const description = document.createElement("p");
-      const priority = document.createElement("p");
-      const edit__btn = document.createElement("button");
-      const remove__btn = document.createElement("button");
-      // ===============================================================================================
-      // Class name
-      todo__container.className = "todo__container";
-      left.className = "left__todo";
-      todo__title.className = "todo__title";
-      description.className = "todo__description";
-      todo__date.className = "todo__date";
-      priority.className = "todo__priority";
-      edit__btn.className = "edit__btn";
-      remove__btn.className = "remove__btn";
-      // ===============================================================================================
-      // Text content
-      todo__container.textContent = "";
-      todo__title.textContent = `${todo.title}`;
-      todo__date.textContent = `Due: ${todo.dueDate}`;
-      description.textContent = `Description: ${todo.description}`;
-      priority.textContent = `Priority: ${todo.priority}`;
-      edit__btn.textContent = "Edit";
-      remove__btn.textContent = "X";
-      // ===============================================================================================
-      // Set id
-      todo__box.setAttribute("data-project", todo.project);
-      todo__container.setAttribute("data-taskId", todo.id);
-      remove__btn.setAttribute("data-taskId", todo.id);
-      todo__title.setAttribute("data-taskId", todo.id);
-      description.setAttribute("data-taskId", todo.id);
-      todo__date.setAttribute("data-taskId", todo.id);
-      priority.setAttribute("data-taskId", todo.id);
-      // ===============================================================================================
-      // Append child
-      left.appendChild(todo__title);
-      left.appendChild(todo__date);
-      right.appendChild(remove__btn);
-      todo__container.appendChild(left);
-      todo__container.appendChild(right);
-      todo__box.appendChild(todo__container);
-      content.appendChild(todo__box);
-      update = 1;
-      // ===============================================================================================
-      // Edit
-      edit__btn.addEventListener("click", () => {
-        left.removeChild(edit__btn);
-        editTask(left, todo.id, left, edit__btn);
-      });
+const renderTodo = (array, submit) => {
+  if (submit === true) {
+    array.forEach((todo) => {
+      if (todo.isShown !== true && todo.project === project__name) {
+        // ===============================================================================================
+        // Variables
+        let toggleDetails = false;
+        let toggleEdit = false;
+        // ===============================================================================================
+        // Create element
+        const todo__container = document.createElement("div");
+        const left = document.createElement("div");
+        const right = document.createElement("div");
+        const todo__title = document.createElement("h4");
+        const todo__date = document.createElement("p");
+        const description = document.createElement("p");
+        const priority = document.createElement("p");
+        const edit__btn = document.createElement("button");
+        const remove__btn = document.createElement("button");
+        // ===============================================================================================
+        // Class name
+        todo__container.className = "todo__container";
+        left.className = "left__todo";
+        todo__title.className = "todo__title";
+        description.className = "todo__description";
+        todo__date.className = "todo__date";
+        priority.className = "todo__priority";
+        edit__btn.className = "edit__btn";
+        remove__btn.className = "remove__btn";
+        // ===============================================================================================
+        // Text content
+        todo__container.textContent = "";
+        todo__title.textContent = `${todo.title}`;
+        todo__date.textContent = `Due: ${todo.dueDate}`;
+        description.textContent = `Description: ${todo.description}`;
+        priority.textContent = `Priority: ${todo.priority}`;
+        edit__btn.textContent = "Edit";
+        remove__btn.textContent = "X";
+        // ===============================================================================================
+        // Set id
+        todo__box.setAttribute("data-project", todo.project);
+        todo__container.setAttribute("data-taskId", todo.id);
+        remove__btn.setAttribute("data-taskId", todo.id);
+        todo__title.setAttribute("data-taskId", todo.id);
+        description.setAttribute("data-taskId", todo.id);
+        todo__date.setAttribute("data-taskId", todo.id);
+        priority.setAttribute("data-taskId", todo.id);
+        // ===============================================================================================
+        // Append child
+        left.appendChild(todo__title);
+        left.appendChild(todo__date);
+        right.appendChild(remove__btn);
+        todo__container.appendChild(left);
+        todo__container.appendChild(right);
+        todo__box.appendChild(todo__container);
+        content.appendChild(todo__box);
+        update = 1;
+        // ===============================================================================================
+        // Edit
+        edit__btn.addEventListener("click", () => {
+          left.removeChild(edit__btn);
+          editTask(left, todo.id, left, edit__btn);
+        });
 
-      // ===============================================================================================
-      // Remove child
-      remove__btn.addEventListener("click", () => {
-        left.removeChild(todo__title);
-        left.removeChild(todo__date);
-        right.removeChild(remove__btn);
-        todo__container.removeChild(left);
-        todo__container.removeChild(right);
-        todo__box.removeChild(todo__container);
-        if (toggleDetails === true) {
-          left.removeChild(description);
-          left.removeChild(priority);
-          left.removeChild(edit__btn);
-        }
+        // ===============================================================================================
+        // Remove child
+        remove__btn.addEventListener("click", () => {
+          left.removeChild(todo__title);
+          left.removeChild(todo__date);
+          right.removeChild(remove__btn);
+          todo__container.removeChild(left);
+          todo__container.removeChild(right);
+          todo__box.removeChild(todo__container);
+          if (toggleDetails === true) {
+            left.removeChild(description);
+            left.removeChild(priority);
+            left.removeChild(edit__btn);
+          }
+        });
+        // ===============================================================================================
+        // More details
+        todo__title.addEventListener("click", () => {
+          if (toggleDetails === false) {
+            toggleDetails = true;
+            left.appendChild(description);
+            left.appendChild(priority);
+            left.appendChild(edit__btn);
+          } else if (toggleDetails === true) {
+            toggleDetails = false;
+            left.removeChild(description);
+            left.removeChild(priority);
+            left.removeChild(edit__btn);
+          }
+        });
+      }
+    });
+  } else if (submit === false) {
+    todo__box.textContent = "";
+    content.textContent = "";
+    let isRemoved = false;
+    if (isRemoved === false) {
+      const todo__remove = document.querySelectorAll(".todo__container");
+      todo__remove.forEach((element) => {
+        todo__box.removeChild(element);
       });
-      // ===============================================================================================
-      // More details
-      todo__title.addEventListener("click", () => {
-        if (toggleDetails === false) {
-          toggleDetails = true;
-          left.appendChild(description);
-          left.appendChild(priority);
-          left.appendChild(edit__btn);
-        } else if (toggleDetails === true) {
-          toggleDetails = false;
-          left.removeChild(description);
-          left.removeChild(priority);
-          left.removeChild(edit__btn);
-        }
-      });
+      isRemoved = true;
+      if (isRemoved === true) {
+        array.forEach((todo) => {
+          if (todo.isShown !== true && todo.project === project__name) {
+            // ===============================================================================================
+            // Variables
+            let toggleDetails = false;
+            let toggleEdit = false;
+            // ===============================================================================================
+            // Create element
+            const todo__container = document.createElement("div");
+            const left = document.createElement("div");
+            const right = document.createElement("div");
+            const todo__title = document.createElement("h4");
+            const todo__date = document.createElement("p");
+            const description = document.createElement("p");
+            const priority = document.createElement("p");
+            const edit__btn = document.createElement("button");
+            const remove__btn = document.createElement("button");
+            // ===============================================================================================
+            // Class name
+            todo__container.className = "todo__container";
+            left.className = "left__todo";
+            todo__title.className = "todo__title";
+            description.className = "todo__description";
+            todo__date.className = "todo__date";
+            priority.className = "todo__priority";
+            edit__btn.className = "edit__btn";
+            remove__btn.className = "remove__btn";
+            // ===============================================================================================
+            // Text content
+            todo__container.textContent = "";
+            todo__title.textContent = `${todo.title}`;
+            todo__date.textContent = `Due: ${todo.dueDate}`;
+            description.textContent = `Description: ${todo.description}`;
+            priority.textContent = `Priority: ${todo.priority}`;
+            edit__btn.textContent = "Edit";
+            remove__btn.textContent = "X";
+            // ===============================================================================================
+            // Set id
+            todo__box.setAttribute("data-project", todo.project);
+            todo__container.setAttribute("data-taskId", todo.id);
+            remove__btn.setAttribute("data-taskId", todo.id);
+            todo__title.setAttribute("data-taskId", todo.id);
+            description.setAttribute("data-taskId", todo.id);
+            todo__date.setAttribute("data-taskId", todo.id);
+            priority.setAttribute("data-taskId", todo.id);
+            // ===============================================================================================
+            // Append child
+            left.appendChild(todo__title);
+            left.appendChild(todo__date);
+            right.appendChild(remove__btn);
+            todo__container.appendChild(left);
+            todo__container.appendChild(right);
+            todo__box.appendChild(todo__container);
+            content.appendChild(todo__box);
+            update = 1;
+            // ===============================================================================================
+            // Edit
+            edit__btn.addEventListener("click", () => {
+              left.removeChild(edit__btn);
+              editTask(left, todo.id, left, edit__btn);
+            });
+
+            // ===============================================================================================
+            // Remove child
+            remove__btn.addEventListener("click", () => {
+              left.removeChild(todo__title);
+              left.removeChild(todo__date);
+              right.removeChild(remove__btn);
+              todo__container.removeChild(left);
+              todo__container.removeChild(right);
+              todo__box.removeChild(todo__container);
+              if (toggleDetails === true) {
+                left.removeChild(description);
+                left.removeChild(priority);
+                left.removeChild(edit__btn);
+              }
+            });
+            // ===============================================================================================
+            // More details
+            todo__title.addEventListener("click", () => {
+              if (toggleDetails === false) {
+                toggleDetails = true;
+                left.appendChild(description);
+                left.appendChild(priority);
+                left.appendChild(edit__btn);
+              } else if (toggleDetails === true) {
+                toggleDetails = false;
+                left.removeChild(description);
+                left.removeChild(priority);
+                left.removeChild(edit__btn);
+              }
+            });
+          }
+        });
+      }
     }
-  });
+  }
 };
 export { renderTodo, todo__box };
