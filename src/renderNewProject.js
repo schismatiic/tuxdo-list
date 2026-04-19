@@ -11,6 +11,7 @@ const new__project__container = document.getElementById(
 let projectArrayLocalStorage = JSON.parse(localStorage.getItem("projectList"));
 const renderNewProject = (name) => {
   if (name === undefined) {
+    console.log("name === undefined");
     // ===============================================================================================
     // Toggle
     new__project__container.removeChild(new__project);
@@ -70,6 +71,7 @@ const renderNewProject = (name) => {
         "projectList",
         JSON.stringify(projectArrayLocalStorage),
       );
+      render__name.setAttribute("data-project-id__render", projectId);
       console.log(projectArrayLocalStorage);
 
       // ===============================================================================================
@@ -83,11 +85,11 @@ const renderNewProject = (name) => {
           "projectList",
           JSON.stringify(projectArrayLocalStorage),
         );
-        console.log(projectArrayLocalStorage);
       });
     });
   } else if (projectArrayLocalStorage !== undefined) {
     projectArrayLocalStorage.forEach((element) => {
+      console.log("projectArray !== undefined");
       // ===============================================================================================
       // Set project name and create
       const project__name = element.name;
@@ -123,6 +125,7 @@ const renderNewProject = (name) => {
       });
     });
   } else if (name !== undefined) {
+    console.log("name !== undefined");
     // ===============================================================================================
     // Set project name and create
     const project__name = name;
@@ -144,6 +147,7 @@ const renderNewProject = (name) => {
     render__project.appendChild(render__name);
     render__project.appendChild(render__delete);
     project__container.appendChild(render__project);
+    render__project.setAttribute("data-project-id__render", projectId);
     // ===============================================================================================
     // Delete listener
     render__delete.addEventListener("click", () => {

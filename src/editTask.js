@@ -5,7 +5,6 @@ import { compareAsc, format } from "date-fns";
 import { createEditTask } from "./editArray.js";
 import { createToDo } from "./todo.js";
 import { project__name } from "./index.js";
-import { removeTodo } from "./removeTodo.js";
 import { getIndex } from "./getIndex.js";
 let editTaskArray = [];
 const editTask = (container, id, left, edit) => {

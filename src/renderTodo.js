@@ -1,5 +1,5 @@
 import "./styles.css";
-import { content } from "./index.js";
+import { content, project__id } from "./index.js";
 import { myTaskLocalStorage, project__name } from "./index.js";
 import { editTask } from "./editTask.js";
 const todo__box = document.createElement("div");
@@ -10,7 +10,11 @@ let update = 0;
 const renderTodo = (array, submit) => {
   if (submit === true) {
     array.forEach((todo) => {
-      if (todo.isShown === false && todo.project === project__name) {
+      if (
+        todo.isShown === false &&
+        todo.project === project__name &&
+        todo.projectId === project__id
+      ) {
         // ===============================================================================================
         // Variables
         let toggleDetails = false;
@@ -116,7 +120,11 @@ const renderTodo = (array, submit) => {
       isRemoved = true;
       if (isRemoved === true) {
         array.forEach((todo) => {
-          if (todo.project === project__name && todo.isShown === false) {
+          if (
+            todo.project === project__name &&
+            todo.isShown === false &&
+            todo.projectId === project__id
+          ) {
             // ===============================================================================================
             // Variables
             let toggleDetails = false;

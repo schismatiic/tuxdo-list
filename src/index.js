@@ -2,7 +2,6 @@ import "./styles.css";
 import { createToDo } from "./todo.js";
 import { renderTodo, todo__box } from "./renderTodo.js";
 import { compareAsc, format } from "date-fns";
-import { removeTodo } from "./removeTodo.js";
 import { getRemoveBtn } from "./getRemoveBtn.js";
 import { editTaskArray } from "./editTask.js";
 import { createProject } from "./project.js";
@@ -14,6 +13,7 @@ const project__screen = document.getElementById("project__screen");
 
 let myTaskLocalStorage = JSON.parse(localStorage.getItem("list"));
 let project__name = "Default";
+let project__id = "";
 project__screen.textContent = `Project name: ${project__name}`;
 myTaskLocalStorage.forEach((element) => {
   if (element.project === project__name) {
@@ -48,6 +48,7 @@ submit__button.addEventListener("click", (event) => {
     priority,
     false,
     project__name,
+    project__id,
   );
   myTaskLocalStorage.push(task);
   localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
@@ -56,7 +57,6 @@ submit__button.addEventListener("click", (event) => {
 let delete__button = getRemoveBtn();
 delete__button.forEach((element) => {
   element.addEventListener("click", () => {
-    renderTodo(myTaskLocalStorage, false);
     const taskId = element.getAttribute("data-taskId");
     let findIndexById = (element) => element.id === taskId;
     myTaskLocalStorage.splice(findIndexById, 1);
@@ -71,6 +71,9 @@ new__project.addEventListener("click", () => {
     const projects = document.querySelectorAll(".render__name__project");
     projects.forEach((element) => {
       element.addEventListener("click", () => {
+        project__id = element.getAttribute("data-project-id__render");
+        console.log(project__id);
+
         project__name = element.textContent;
         project__screen.textContent = `Project name: ${project__name}`;
         myTaskLocalStorage.forEach((element) => {
@@ -80,7 +83,6 @@ new__project.addEventListener("click", () => {
         let delete__button = getRemoveBtn();
         delete__button.forEach((element) => {
           element.addEventListener("click", () => {
-            renderTodo(myTaskLocalStorage, false);
             const taskId = element.getAttribute("data-taskId");
             let findIndexById = (element) => element.id === taskId;
             myTaskLocalStorage.splice(findIndexById, 1);
@@ -104,6 +106,8 @@ new__project.addEventListener("click", () => {
 const projects = document.querySelectorAll(".render__name__project");
 projects.forEach((element) => {
   element.addEventListener("click", () => {
+    project__id = element.getAttribute("data-project-id__render");
+    console.log(project__id);
     project__name = element.textContent;
     project__screen.textContent = `Project name: ${project__name}`;
     myTaskLocalStorage.forEach((element) => {
@@ -113,7 +117,6 @@ projects.forEach((element) => {
     let delete__button = getRemoveBtn();
     delete__button.forEach((element) => {
       element.addEventListener("click", () => {
-        renderTodo(myTaskLocalStorage, false);
         const taskId = element.getAttribute("data-taskId");
         let findIndexById = (element) => element.id === taskId;
         myTaskLocalStorage.splice(findIndexById, 1);
@@ -130,4 +133,10 @@ projects.forEach((element) => {
     console.log(myTaskLocalStorage);
   });
 });
-export { content, myTaskLocalStorage, new__project, project__name };
+export {
+  content,
+  myTaskLocalStorage,
+  new__project,
+  project__name,
+  project__id,
+};
