@@ -6,6 +6,7 @@ import { getRemoveBtn } from "./getRemoveBtn.js";
 import { editTaskArray } from "./editTask.js";
 import { createProject } from "./project.js";
 import { renderNewProject } from "./renderNewProject.js";
+import { getDeleteBtn } from "./getDeleteBtn.js";
 const content = document.getElementById("content");
 const submit__button = document.getElementById("submit__button");
 const new__project = document.getElementById("project__new");
@@ -66,6 +67,7 @@ delete__button.forEach((element) => {
 });
 new__project.addEventListener("click", () => {
   renderNewProject();
+
   const create__btn = document.querySelector(".create__button");
   create__btn.addEventListener("click", () => {
     const projects = document.querySelectorAll(".render__name__project");
@@ -78,6 +80,12 @@ new__project.addEventListener("click", () => {
         project__screen.textContent = `Project name: ${project__name}`;
         myTaskLocalStorage.forEach((element) => {
           element.isShown = false;
+        });
+        let render__delete__button = getDeleteBtn();
+        render__delete__button.forEach((element) => {
+          element.addEventListener("click", () => {
+            console.log("miauuuuuuu");
+          });
         });
         renderTodo(myTaskLocalStorage, false);
         let delete__button = getRemoveBtn();
@@ -101,6 +109,12 @@ new__project.addEventListener("click", () => {
         console.log(myTaskLocalStorage);
       });
     });
+  });
+});
+let render__delete__button = getDeleteBtn();
+render__delete__button.forEach((element) => {
+  element.addEventListener("click", () => {
+    console.log("miauuuuuuu");
   });
 });
 const projects = document.querySelectorAll(".render__name__project");

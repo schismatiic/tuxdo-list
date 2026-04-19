@@ -50,6 +50,7 @@ const renderNewProject = (name) => {
       // ===============================================================================================
       // Class name
       render__name.className = "render__name__project";
+      render__delete.className = "render__delete__button";
       // ===============================================================================================
       // Text content
       render__name.textContent = project__name;
@@ -66,7 +67,7 @@ const renderNewProject = (name) => {
       // Create
       let projectId = crypto.randomUUID();
       let newProjectCreate = createProject(projectId, project__name);
-      projectArrayLocalStorage.push(newProjectCreate);
+      projectArrayLocalStorage.push(myTaskLocalStorage, newProjectCreate);
       localStorage.setItem(
         "projectList",
         JSON.stringify(projectArrayLocalStorage),
@@ -77,7 +78,15 @@ const renderNewProject = (name) => {
       // ===============================================================================================
       // Delete listener
       render__delete.addEventListener("click", () => {
-        console.log(`Project deleted: ${projectId}`);
+        myTaskLocalStorage.forEach((element, index) => {
+          if (element.project === project__name) {
+            myTaskLocalStorage.splice(index, 1);
+            localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+          }
+        });
+        console.log(myTaskLocalStorage);
+
+        console.log(`Project deleted: ${project__name}`);
         project__container.removeChild(render__project);
         let findIndexById = (element) => element.id === projectId;
         projectArrayLocalStorage.splice(findIndexById, 1);
@@ -101,6 +110,7 @@ const renderNewProject = (name) => {
       // ===============================================================================================
       // Class name
       render__name.className = "render__name__project";
+      render__delete.className = "render__delete__button";
       // ===============================================================================================
       // Text content
       render__name.textContent = project__name;
@@ -114,6 +124,13 @@ const renderNewProject = (name) => {
       // ===============================================================================================
       // Delete listener
       render__delete.addEventListener("click", () => {
+        myTaskLocalStorage.forEach((element, index) => {
+          if (element.project === project__name) {
+            myTaskLocalStorage.splice(index, 1);
+            localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+          }
+        });
+        console.log(myTaskLocalStorage);
         let findIndexById = (element) => element.id === projectId;
         projectArrayLocalStorage.splice(findIndexById, 1);
         localStorage.setItem(
@@ -137,6 +154,7 @@ const renderNewProject = (name) => {
     // ===============================================================================================
     // Class name
     render__name.className = "render__name__project";
+    render__delete.className = "render__delete__button";
     // ===============================================================================================
     // Text content
     render__name.textContent = project__name;
@@ -151,7 +169,13 @@ const renderNewProject = (name) => {
     // ===============================================================================================
     // Delete listener
     render__delete.addEventListener("click", () => {
-      console.log(`Project deleted: ${project__name}`);
+      myTaskLocalStorage.forEach((element, index) => {
+        if (element.project === project__name) {
+          myTaskLocalStorage.splice(index, 1);
+          localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+        }
+      });
+      console.log(myTaskLocalStorage);
       project__container.removeChild(render__project);
     });
   }
