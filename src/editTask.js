@@ -1,9 +1,12 @@
 import "./styles.css";
-import { content } from "./index.js";
+import { content, myTasks } from "./index.js";
 import { renderChange } from "./renderChange.js";
 import { compareAsc, format } from "date-fns";
 import { createEditTask } from "./editArray.js";
-
+import { createToDo } from "./todo.js";
+import { project__name } from "./index.js";
+import { removeTodo } from "./removeTodo.js";
+import { getIndex } from "./getIndex.js";
 let editTaskArray = [];
 const editTask = (container, id, left, edit) => {
   // ===============================================================================================
@@ -69,17 +72,19 @@ const editTask = (container, id, left, edit) => {
     let description__value = description__textarea.value;
     let due__value = format(new Date(due__input.value), "dd MMMM yyyy");
     let priority__value = priority__select.value;
-    const newTask = createEditTask(
+    const newTask = createToDo(
       changeTask__id,
       name__value,
       description__value,
       due__value,
       priority__value,
       false,
+      project__name,
     );
-    editTaskArray.push(newTask);
-    console.log(editTaskArray);
-
+    const index = getIndex(myTasks, changeTask__id);
+    console.log(`index: ${index}`);
+    console.log(myTasks);
+    myTasks.splice(index, 1, newTask);
     renderChange(
       changeTask__id,
       name__value,
@@ -99,4 +104,4 @@ const editTask = (container, id, left, edit) => {
     container.removeChild(edit__container);
   });
 };
-export { editTask, editTaskArray };
+export { editTask };
