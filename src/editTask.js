@@ -1,5 +1,5 @@
 import "./styles.css";
-import { content, myTasks } from "./index.js";
+import { content, myTaskLocalStorage } from "./index.js";
 import { renderChange } from "./renderChange.js";
 import { compareAsc, format } from "date-fns";
 import { createEditTask } from "./editArray.js";
@@ -81,10 +81,11 @@ const editTask = (container, id, left, edit) => {
       false,
       project__name,
     );
-    const index = getIndex(myTasks, changeTask__id);
+    const index = getIndex(myTaskLocalStorage, changeTask__id);
     console.log(`index: ${index}`);
-    console.log(myTasks);
-    myTasks.splice(index, 1, newTask);
+    console.log(myTaskLocalStorage);
+    myTaskLocalStorage.splice(index, 1, newTask);
+    localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
     renderChange(
       changeTask__id,
       name__value,

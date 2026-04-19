@@ -1,6 +1,6 @@
 import "./styles.css";
 import { content } from "./index.js";
-import { myTasks, project__name } from "./index.js";
+import { myTaskLocalStorage, project__name } from "./index.js";
 import { editTask } from "./editTask.js";
 const todo__box = document.createElement("div");
 todo__box.textContent = "";
@@ -10,7 +10,7 @@ let update = 0;
 const renderTodo = (array, submit) => {
   if (submit === true) {
     array.forEach((todo) => {
-      if (todo.isShown !== true && todo.project === project__name) {
+      if (todo.isShown === false && todo.project === project__name) {
         // ===============================================================================================
         // Variables
         let toggleDetails = false;
@@ -101,6 +101,7 @@ const renderTodo = (array, submit) => {
             left.removeChild(edit__btn);
           }
         });
+        todo.isShown = true;
       }
     });
   } else if (submit === false) {
@@ -115,7 +116,7 @@ const renderTodo = (array, submit) => {
       isRemoved = true;
       if (isRemoved === true) {
         array.forEach((todo) => {
-          if (todo.isShown !== true && todo.project === project__name) {
+          if (todo.project === project__name && todo.isShown === false) {
             // ===============================================================================================
             // Variables
             let toggleDetails = false;
@@ -206,6 +207,7 @@ const renderTodo = (array, submit) => {
                 left.removeChild(edit__btn);
               }
             });
+            todo.isShown = true;
           }
         });
       }

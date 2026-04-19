@@ -12,39 +12,23 @@ const submit__button = document.getElementById("submit__button");
 const new__project = document.getElementById("project__new");
 const project__screen = document.getElementById("project__screen");
 
-let myTasks = [];
+let myTaskLocalStorage = JSON.parse(localStorage.getItem("list"));
 let project__name = "Default";
 project__screen.textContent = `Project name: ${project__name}`;
-
+myTaskLocalStorage.forEach((element) => {
+  if (element.project === project__name) {
+    element.isShown = false;
+  }
+});
 renderNewProject("Default");
 // ===============================================================================================
 // Default
-const date1 = format(new Date(11, 11, 2000), "dd MMMM yyyy");
-const defaultTask = createToDo(
-  crypto.randomUUID(),
-  "default",
-  "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
-  date1,
-  "medium",
-  false,
-  "Default",
-);
-const defaultTask1 = createToDo(
-  crypto.randomUUID(),
-  "default",
-  "jsdhsdjkfhdskjfhdskjhfdsjkhfkjdshfkds",
-  date1,
-  "medium",
-  false,
-  "Default",
-);
-myTasks.push(defaultTask);
-myTasks.push(defaultTask1);
-renderTodo(myTasks, true);
-defaultTask.isShown = true;
-defaultTask1.isShown = true;
-console.log(myTasks);
+renderTodo(myTaskLocalStorage, true);
+console.log(myTaskLocalStorage);
 
+// defaultTask.isShown = true;
+// defaultTask1.isShown = true;
+localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
 // ===============================================================================================
 // Submit listener
 submit__button.addEventListener("click", (event) => {
@@ -65,18 +49,19 @@ submit__button.addEventListener("click", (event) => {
     false,
     project__name,
   );
-  myTasks.push(task);
-  console.log(myTasks);
-  renderTodo(myTasks, true);
-  task.isShown = true;
-  let delete__button = getRemoveBtn();
-  delete__button.forEach((element) => {
-    element.addEventListener("click", () => {
-      const taskId = element.getAttribute("data-taskId");
-      const newArray = removeTodo(myTasks, taskId);
-      myTasks = newArray;
-      console.log(myTasks);
-    });
+  myTaskLocalStorage.push(task);
+  localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+  renderTodo(myTaskLocalStorage, true);
+});
+let delete__button = getRemoveBtn();
+delete__button.forEach((element) => {
+  element.addEventListener("click", () => {
+    renderTodo(myTaskLocalStorage, false);
+    const taskId = element.getAttribute("data-taskId");
+    let findIndexById = (element) => element.id === taskId;
+    myTaskLocalStorage.splice(findIndexById, 1);
+    localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+    console.log(myTaskLocalStorage);
   });
 });
 new__project.addEventListener("click", () => {
@@ -88,28 +73,61 @@ new__project.addEventListener("click", () => {
       element.addEventListener("click", () => {
         project__name = element.textContent;
         project__screen.textContent = `Project name: ${project__name}`;
-        myTasks.forEach((element) => {
+        myTaskLocalStorage.forEach((element) => {
           element.isShown = false;
         });
-        renderTodo(myTasks, false);
+        renderTodo(myTaskLocalStorage, false);
         let delete__button = getRemoveBtn();
         delete__button.forEach((element) => {
           element.addEventListener("click", () => {
+            renderTodo(myTaskLocalStorage, false);
             const taskId = element.getAttribute("data-taskId");
-            const newArray = removeTodo(myTasks, taskId);
-            myTasks = newArray;
-            console.log(myTasks);
+            let findIndexById = (element) => element.id === taskId;
+            myTaskLocalStorage.splice(findIndexById, 1);
+            localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+            myTaskLocalStorage = newArray;
+            console.log(myTaskLocalStorage);
           });
         });
-        myTasks.forEach((element) => {
+        myTaskLocalStorage.forEach((element) => {
           console.log(`${element.project} === ${project__name}`);
           if (element.project === project__name) {
             element.isShown === true;
           }
         });
-        console.log(myTasks);
+
+        console.log(myTaskLocalStorage);
       });
     });
   });
 });
-export { content, myTasks, new__project, project__name };
+const projects = document.querySelectorAll(".render__name__project");
+projects.forEach((element) => {
+  element.addEventListener("click", () => {
+    project__name = element.textContent;
+    project__screen.textContent = `Project name: ${project__name}`;
+    myTaskLocalStorage.forEach((element) => {
+      element.isShown = false;
+    });
+    renderTodo(myTaskLocalStorage, false);
+    let delete__button = getRemoveBtn();
+    delete__button.forEach((element) => {
+      element.addEventListener("click", () => {
+        renderTodo(myTaskLocalStorage, false);
+        const taskId = element.getAttribute("data-taskId");
+        let findIndexById = (element) => element.id === taskId;
+        myTaskLocalStorage.splice(findIndexById, 1);
+        localStorage.setItem("list", JSON.stringify(myTaskLocalStorage));
+        console.log(myTaskLocalStorage);
+      });
+    });
+    myTaskLocalStorage.forEach((element) => {
+      console.log(`${element.project} === ${project__name}`);
+      if (element.project === project__name) {
+        element.isShown === true;
+      }
+    });
+    console.log(myTaskLocalStorage);
+  });
+});
+export { content, myTaskLocalStorage, new__project, project__name };

@@ -8,7 +8,7 @@ const content = document.getElementById("content");
 const new__project__container = document.getElementById(
   "new__project__container",
 );
-
+let projectArrayLocalStorage = JSON.parse(localStorage.getItem("projectList"));
 const renderNewProject = (name) => {
   if (name === undefined) {
     // ===============================================================================================
@@ -62,8 +62,62 @@ const renderNewProject = (name) => {
       render__project.appendChild(render__delete);
       project__container.appendChild(render__project);
       // ===============================================================================================
+      // Create
+      let projectId = crypto.randomUUID();
+      let newProjectCreate = createProject(projectId, project__name);
+      projectArrayLocalStorage.push(newProjectCreate);
+      localStorage.setItem(
+        "projectList",
+        JSON.stringify(projectArrayLocalStorage),
+      );
+      console.log(projectArrayLocalStorage);
+
+      // ===============================================================================================
       // Delete listener
       render__delete.addEventListener("click", () => {
+        console.log(`Project deleted: ${projectId}`);
+        project__container.removeChild(render__project);
+        let findIndexById = (element) => element.id === projectId;
+        projectArrayLocalStorage.splice(findIndexById, 1);
+        localStorage.setItem(
+          "projectList",
+          JSON.stringify(projectArrayLocalStorage),
+        );
+        console.log(projectArrayLocalStorage);
+      });
+    });
+  } else if (projectArrayLocalStorage !== undefined) {
+    projectArrayLocalStorage.forEach((element) => {
+      // ===============================================================================================
+      // Set project name and create
+      const project__name = element.name;
+      // ===============================================================================================
+      // Create element
+      const render__project = document.createElement("div");
+      const render__name = document.createElement("p");
+      const render__delete = document.createElement("button");
+      // ===============================================================================================
+      // Class name
+      render__name.className = "render__name__project";
+      // ===============================================================================================
+      // Text content
+      render__name.textContent = project__name;
+      render__delete.textContent = "X";
+      render__project.className = "render__project";
+      // ===============================================================================================
+      // Append child
+      render__project.appendChild(render__name);
+      render__project.appendChild(render__delete);
+      project__container.appendChild(render__project);
+      // ===============================================================================================
+      // Delete listener
+      render__delete.addEventListener("click", () => {
+        let findIndexById = (element) => element.id === projectId;
+        projectArrayLocalStorage.splice(findIndexById, 1);
+        localStorage.setItem(
+          "projectList",
+          JSON.stringify(projectArrayLocalStorage),
+        );
         console.log(`Project deleted: ${project__name}`);
         project__container.removeChild(render__project);
       });
@@ -98,4 +152,4 @@ const renderNewProject = (name) => {
     });
   }
 };
-export { renderNewProject };
+export { renderNewProject, projectArrayLocalStorage };

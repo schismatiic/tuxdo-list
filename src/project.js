@@ -1,4 +1,4 @@
-function createProject(name, tasks) {
-  return { name, tasks };
+function createProject(id, name) {
+  return { id, name };
 }
 export { createProject };
