@@ -1,5 +1,5 @@
 import "./styles.css";
-import { new__project } from "./index.js";
+import { new__project, myTaskLocalStorage } from "./index.js";
 import { createProject } from "./project.js";
 import { todo__box } from "./renderTodo.js";
 const project = document.getElementById("project");

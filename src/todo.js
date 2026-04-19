@@ -6,7 +6,6 @@ function createToDo(
   priority,
   isShown,
   project,
-  projectId,
 ) {
   return {
     id,
@@ -16,7 +15,6 @@ function createToDo(
     priority,
     isShown,
     project,
-    projectId,
   };
 }
 export { createToDo };
